@@ -1,0 +1,67 @@
+body {
+  background-color: rgba(40, 176, 255, 0.247);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.menu {
+  background-color:  rgba(245, 173, 85, 0.8);
+  color: white;
+  position: fixed; /* Fixa o menu no topo da página */
+  top: 0;
+  left: 0;
+  width: 100%; /* Faz o menu ocupar 100% da largura da tela */
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-around; /* Espaçamento entre os itens */
+  align-items: center;
+  z-index: 1000; /* Garante que o menu ficará sobre o conteúdo da página */
+}
+
+/* Estilo para os itens do menu */
+.menu a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+}
+
+.reserva {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+}
+
+.box {
+  border: 2px solid rgba(247, 151, 35, 0.8);
+  background-color: rgba(255, 228, 196, 0.8);
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  border-radius: 16px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.circle {
+  border-radius: 32px;
+  padding: 16px;
+}
+
+.reserva h2 {
+  margin-right: 10px;
+}
+
+.arrow-icon {
+  font-size: 30px; /* Define o tamanho do ícone */
+}
