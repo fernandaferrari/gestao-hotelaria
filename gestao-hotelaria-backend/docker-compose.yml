@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+
+  postgres:
+    image: postgres:latest
+    container_name: hotel-db
+    restart: always
+    environment:
+      - POSTGRES_DB=hotel-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
