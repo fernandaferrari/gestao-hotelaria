@@ -1,0 +1,25 @@
+<section>
+  <div class="form-container">
+    <div class="form">
+      <h2>Cadastro de reserva</h2>
+      <form [formGroup]="cadastroReservaForm" (submit)="onSubmit()">
+       <label for="nome">CPF</label>
+       <input id="cpf" formControlName="cpf" type="text" placeholder="Digite o CPF do hóspede" />
+
+       <label for="dataInicial">Data Inicial</label>
+       <input id="dataInicial" formControlName="dataInicial" type="date" />
+
+       <label for="dataFinal">Data Final</label>
+       <input id="dataFinal" formControlName="dataFinal" type="date" />
+
+       <label for="dataFinal">Utilizará o estacionamento?</label>
+       <select id="estacionamento" formControlName="estacionamento">
+         <option value="">Selecione uma opção</option>
+         <option value="Sim">Sim</option>
+         <option value="Não">Não</option>
+       </select>
+       <button type="submit" [disabled]="cadastroReservaForm.invalid">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+</section>
