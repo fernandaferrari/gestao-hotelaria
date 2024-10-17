@@ -2,6 +2,7 @@ package com.example.gestaoHotelaria.utils;
 
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
@@ -9,8 +10,14 @@ import java.util.Locale;
 
 public class DateUtils {
 	public static LocalDateTime getConverteStringToDate(String data) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        return LocalDateTime.parse(data, formatter);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.parse(data, formatter);
+	    return localDate.atStartOfDay();
+	}
+	
+	public static LocalDateTime getConverteStringToDateHora(String data) {
+	    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+	    return LocalDateTime.parse(data, dateTimeFormatter);
 	}
 	
 	public static String getConverteDateToString(LocalDateTime data) {

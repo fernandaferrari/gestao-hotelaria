@@ -20,10 +20,4 @@ public class HospedeService {
 		Hospede hospede = new Hospede().build(hospedeDTO);
 		this.repository.save(hospede);
 	}
-
-	//Método que retorna uma lista de hospedes que possuem reserva sem checkout
-	public List<HospedeDTO> getHospedesSemCheckout() {
-		return this.repository.getHospedesSemCheckout();
-	}
-
 }

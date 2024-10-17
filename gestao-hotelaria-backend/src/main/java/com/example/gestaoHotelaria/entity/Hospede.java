@@ -67,7 +67,7 @@ public class Hospede {
 	}
 
 	public Hospede build(HospedeDTO dto) {
-		return new Hospede(null, dto.getNome(), dto.getDocumento(), dto.getTelefone(), DateUtils.getConverteStringToDate(dto.getDataNascimento()));
+		return new Hospede(null, dto.getNome(), dto.getCpf(), dto.getTelefone(), DateUtils.getConverteStringToDate(dto.getDataNascimento()));
 	}
 	
 	

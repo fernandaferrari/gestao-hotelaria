@@ -2,7 +2,7 @@ package com.example.gestaoHotelaria.dto;
 
 public class HospedeDTO {
 	private String nome;
-	private String documento;
+	private String cpf;
 	private String dataNascimento;
 	private String telefone;
 	
@@ -18,12 +18,12 @@ public class HospedeDTO {
 		this.nome = nome;
 	}
 
-	public String getDocumento() {
-		return documento;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setDocumento(String documento) {
-		this.documento = documento;
+	public void setCpf(String documento) {
+		this.cpf = documento;
 	}
 
 	public String getDataNascimento() {
