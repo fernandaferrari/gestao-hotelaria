@@ -12,4 +12,4 @@
 
 <p>Ter um gerenciado de database</p>
 
-<p>Adicionar conexão conforme arquivo [application.properties](http://application.properties) do projeto back-end</p>
+<p>Adicionar conexão conforme arquivo [application.properties] do projeto back-end</p>
