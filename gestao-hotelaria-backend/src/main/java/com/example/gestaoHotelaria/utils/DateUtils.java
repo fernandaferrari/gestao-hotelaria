@@ -1,10 +1,9 @@
 package com.example.gestaoHotelaria.utils;
 
-import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
@@ -21,7 +20,7 @@ public class DateUtils {
 	}
 	
 	public static String getConverteDateToString(LocalDateTime data) {
-	    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 	    return data != null ? formatter.format(data) : "";
 	}
 

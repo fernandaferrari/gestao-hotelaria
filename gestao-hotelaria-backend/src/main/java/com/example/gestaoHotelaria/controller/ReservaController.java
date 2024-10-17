@@ -70,4 +70,16 @@ public class ReservaController {
 	                .body(Collections.emptyList());
 		}
 	}
+	
+	@GetMapping("/")
+	public ResponseEntity<List<ReservaDTO>> getReservas() {
+		try {
+			List<ReservaDTO> reservas = this.reservaService.getReservas();
+			return ResponseEntity.ok(reservas);
+		}catch (Exception e) {
+			e.printStackTrace();
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                .body(Collections.emptyList());
+		}
+	}
 }

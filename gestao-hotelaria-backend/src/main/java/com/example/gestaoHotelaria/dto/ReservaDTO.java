@@ -8,31 +8,33 @@ public class ReservaDTO {
 
 	private Long id;
 	private Long hospede;
+	private String nomeHospede;
 	private String dataInicio;
 	private String dataFim;
 	private String estacionamento;
 	private BigDecimal valor;
-	private String temCheckin;
-	private String temCheckout;
+	private boolean checkin;
+	private boolean checkout;
 	
 
 	public ReservaDTO() {
 		super();
 	}
 	
-	public ReservaDTO(Long id, Long hospede, String dataInicio, String dataFim, String estacionamento, BigDecimal valor,
-			String temCheckin, String temCheckout) {
+	public ReservaDTO(Long id, Long hospede, String nomeHospede, String dataInicio, String dataFim,
+			String estacionamento, BigDecimal valor, boolean checkin, boolean checkout) {
 		super();
 		this.id = id;
 		this.hospede = hospede;
+		this.nomeHospede = nomeHospede;
 		this.dataInicio = dataInicio;
 		this.dataFim = dataFim;
 		this.estacionamento = estacionamento;
 		this.valor = valor;
-		this.temCheckin = temCheckin;
-		this.temCheckout = temCheckout;
+		this.checkin = checkin;
+		this.checkout = checkout;
 	}
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -69,21 +71,33 @@ public class ReservaDTO {
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
-	public String getTemCheckin() {
-		return temCheckin;
-	}
-	public void setTemCheckin(String temCheckin) {
-		this.temCheckin = temCheckin;
-	}
-	public String getTemCheckout() {
-		return temCheckout;
-	}
-	public void setTemCheckout(String temCheckout) {
-		this.temCheckout = temCheckout;
-	}
 	
 	public static ReservaDTO build(Reserva r) {
-		return new ReservaDTO(r.getId(), r.getHospede().getId(), r.getDataInicioString(), r.getDataFimString(), r.getEstacionamento(), r.getValor(), r.isTemCheckin(), r.isTemCheckout());
+		return new ReservaDTO(r.getId(), r.getHospede().getId(), r.getHospede().getNome(), r.getDataInicioString(), r.getDataFimString(), r.getEstacionamento(), r.getValor(), r.isTemCheckin(), r.isTemCheckout());
+	}
+
+	public String getNomeHospede() {
+		return nomeHospede;
+	}
+
+	public void setNomeHospede(String nomeHospede) {
+		this.nomeHospede = nomeHospede;
+	}
+
+	public boolean isCheckin() {
+		return checkin;
+	}
+
+	public void setCheckin(boolean checkin) {
+		this.checkin = checkin;
+	}
+
+	public boolean isCheckout() {
+		return checkout;
+	}
+
+	public void setCheckout(boolean checkout) {
+		this.checkout = checkout;
 	}
 	
 }

@@ -50,4 +50,9 @@ public class ReservaService {
 	public Optional<Reserva> findById(Long idHospede) {
 		return this.repository.findById(idHospede);
 	}
+
+	public List<ReservaDTO> getReservas() {
+		List<Reserva> reservas = repository.findAll();
+		return reservas.stream().map(r -> ReservaDTO.build(r)).collect(Collectors.toList());
+	}
 }

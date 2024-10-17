@@ -116,12 +116,12 @@ public class Reserva {
 		this.checkout = checkout;
 	}
 	
-	public String isTemCheckin() {
-		return this.getCheckin() != null ? "S" : "N";
+	public boolean isTemCheckin() {
+		return this.getCheckin() != null;
 	}
 	
-	public String isTemCheckout() {
-		return this.getCheckout() != null ? "S" : "N";
+	public boolean isTemCheckout() {
+		return this.getCheckout() != null;
 	}
 
 	public String getDataFimString() {

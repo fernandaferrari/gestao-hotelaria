@@ -1,6 +1,7 @@
 package com.example.gestaoHotelaria.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,12 @@ public class HospedeController {
 	@Autowired HospedeService hospedeService;
 	
 	@PostMapping("/save")
-	public String saveHospede(@RequestBody HospedeDTO hospedeDTO) {
+	public  ResponseEntity<String> saveHospede(@RequestBody HospedeDTO hospedeDTO) {
 		try {
 			this.hospedeService.save(hospedeDTO);
-			return "Hóspede salvo com sucesso!";
+			return ResponseEntity.ok("Hóspede salvo com sucesso!");
 		}catch (Exception e) {
-			return "Erro ao salvar hóspede, tente novamente!";
+	        return ResponseEntity.badRequest().body("Erro ao salvar hóspede, tente novamente!");
 		}
 	}
 	
