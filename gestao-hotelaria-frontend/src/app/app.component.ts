@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Router } from '@angular/router';
-import { ReservaComponent } from "./reserva/reserva.component";
+import { ReservaComponent } from "./components/reserva/reserva.component";
 import { HttpClientModule } from '@angular/common/http';
 
 @Component({
