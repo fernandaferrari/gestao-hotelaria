@@ -1,19 +1,6 @@
 <router-outlet />
-<body>
-  <nav class="menu">
-    <a href="#home">Home</a>
-    <a href="#checkin">Check-in</a>
-    <a href="#checkout">Check-out</a>
-    <a href="#buscar_reserva">Buscar reservas</a>
-  </nav>
-  <section>
-    <div class="reserva">
-      <div class="box text">
-        <h2>Faça sua reserva aqui</h2>
-      </div>
-      <div class="box circle arrow-icon">
-        <i class="fa-solid fa-arrow-right"></i>
-      </div>
-    </div>
-  </section>
-</body>
+<nav class="menu">
+  <a routerLink="/">Home</a>
+  <a routerLink="/hospedes">Hospedes</a>
+  <a routerLink="/gerenciar">Gerenciar reservas</a>
+</nav>
