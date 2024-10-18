@@ -116,6 +116,7 @@ export class ListaReservasComponent implements OnInit{
             confirmButtonText: 'Sim',
             cancelButtonText: 'Cancelar'
           }).then((result) => {
+            reserva.checkout = result.isConfirmed;
             if (result.isConfirmed && reserva.id) {
               const checkoutDTO: CheckinDTO = { idReserva: reserva.id, data: currentDateTime}
               this.reservaService.saveCheckout(checkoutDTO).subscribe(response => {
@@ -124,7 +125,6 @@ export class ListaReservasComponent implements OnInit{
                   title: 'Check-out efetuado com sucesso!'
                 }).then((result => this.carregarLista()));
               }, error => {
-                reserva.checkout = !checked;
                 Swal.fire({
                   icon: 'error',
                   title: 'Erro!',

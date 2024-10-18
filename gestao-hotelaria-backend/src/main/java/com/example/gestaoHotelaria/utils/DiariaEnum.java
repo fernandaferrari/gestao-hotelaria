@@ -42,7 +42,7 @@ public enum DiariaEnum {
 		DiariaEnum dia = DiariaEnum.findByNome(diaSemana);
 		BigDecimal valorDiaria = BigDecimal.valueOf(dia.getValorDiaria());
         BigDecimal cinquentaPorCento = valorDiaria.multiply(BigDecimal.valueOf(0.50));
-        return cinquentaPorCento != null ? cinquentaPorCento.add(valorDiaria) : BigDecimal.ZERO;
+        return cinquentaPorCento != null ? cinquentaPorCento : BigDecimal.ZERO;
 	}
 	
 	public static DiariaEnum findByNome(final String nome) {
