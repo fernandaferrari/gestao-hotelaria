@@ -1,18 +1,17 @@
 .menu {
   background-color:  rgba(245, 173, 85, 0.8);
   color: white;
-  position: fixed; /* Fixa o menu no topo da página */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%; /* Faz o menu ocupar 100% da largura da tela */
-  padding: 10px 0;
+  width: 100%;
+  padding: 8px 0;
   display: flex;
-  justify-content: space-around; /* Espaçamento entre os itens */
+  justify-content: space-around;
   align-items: center;
-  z-index: 1000; /* Garante que o menu ficará sobre o conteúdo da página */
+  z-index: 1000;
 }
 
-/* Estilo para os itens do menu */
 .menu a {
   text-decoration: none;
   color: white;
