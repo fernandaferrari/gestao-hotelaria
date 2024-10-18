@@ -1,0 +1,45 @@
+<div class="lista">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Data Início</th>
+        <th>Data Fim</th>
+        <th>Valor</th>
+        <th>Check-in</th>
+        <th>Check-out</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let reserva of reservas">
+        <td>{{ reserva.id }}</td>
+        <td>{{ reserva.nomeHospede }}</td>
+        <td>{{ reserva.dataInicio }}</td>
+        <td>{{ reserva.dataFim }}</td>
+        <td>{{ reserva.valor }}</td>
+        <td *ngIf="reserva.dataHoraCheckin">
+          {{ reserva.dataHoraCheckin }}
+        </td>
+        <td *ngIf="!reserva.dataHoraCheckin">
+          <input
+            type="checkbox"
+            [checked]="reserva.checkin"
+            (change)="onCheckinChange(reserva, $event)"
+          />
+        </td>
+        <td *ngIf="reserva.dataHoraCheckout">
+          {{ reserva.dataHoraCheckout }}
+        </td>
+        <td *ngIf="!reserva.dataHoraCheckout">
+          <input
+            [disabled]="!reserva.dataHoraCheckin"
+            type="checkbox"
+            [checked]="reserva.checkout"
+            (change)="onCheckoutChange(reserva, $event)"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

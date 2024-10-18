@@ -1,5 +1,6 @@
 package com.example.gestaoHotelaria.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import com.example.gestaoHotelaria.entity.Reserva;
 import com.example.gestaoHotelaria.repository.HospedeRepository;
 import com.example.gestaoHotelaria.repository.ReservaRepository;
 import com.example.gestaoHotelaria.utils.DateUtils;
+import com.example.gestaoHotelaria.utils.DiariaEnum;
 
 @Service
 public class ReservaService {
@@ -34,16 +36,23 @@ public class ReservaService {
 
 	public void save(ReservaDTO reservaDTO) throws Exception {
 		Reserva novaReserva = new Reserva();
-		Optional<Hospede> hospede = hospedeRepository.findById(reservaDTO.getId());
+		Optional<Hospede> hospede = hospedeRepository.findByCPF(reservaDTO.getCpf());
 		
 		if(!hospede.isPresent()) {
 			throw new Exception("O hóspede não existe!");
 		}
+		LocalDateTime dataInicio = DateUtils.getConverteStringToDate(reservaDTO.getDataInicio());
+		LocalDateTime dataFim = DateUtils.getConverteStringToDate(reservaDTO.getDataFim());
+		
+		if(dataInicio.isAfter(dataFim)) {
+			throw new Exception("A data inicial não pode ser menor que a final");
+		}
+		
 		novaReserva.setHospede(hospede.get());
-		novaReserva.setDataInicio(DateUtils.getConverteStringToDate(reservaDTO.getDataInicio()));
-		novaReserva.setDataFim(DateUtils.getConverteStringToDate(reservaDTO.getDataFim()));
-		novaReserva.setValor(reservaDTO.getValor());
+		novaReserva.setDataInicio(dataInicio);
+		novaReserva.setDataFim(dataFim.withHour(14).withMinute(0).withSecond(0).withNano(0));
 		novaReserva.setEstacionamento(reservaDTO.getEstacionamento());
+		novaReserva.setValor(DiariaEnum.calcular(dataInicio, dataFim, "Sim".equals(reservaDTO.getEstacionamento())));
 		this.repository.save(novaReserva);
 	}
 
@@ -54,5 +63,13 @@ public class ReservaService {
 	public List<ReservaDTO> getReservas() {
 		List<Reserva> reservas = repository.findAll();
 		return reservas.stream().map(r -> ReservaDTO.build(r)).collect(Collectors.toList());
+	}
+
+	public void saveReserva(Reserva reserva) {
+		this.repository.save(reserva);
+	}
+
+	public void save(Reserva reserva) {
+		repository.save(reserva);
 	}
 }

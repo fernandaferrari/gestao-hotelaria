@@ -1,6 +1,7 @@
 package com.example.gestaoHotelaria.utils;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ public enum DiariaEnum {
     QUINTA("Quinta-feira",120.0, 15.0),
     SEXTA("Sexta-feira",120.0, 15.0),
     SABADO("Sábado",180.0, 20.0),
-    DOMINGO("Doming",180.0, 20.0);
+    DOMINGO("Domingo",180.0, 20.0);
 
 	private final String nome;
     private final double valorDiaria;
@@ -45,14 +46,29 @@ public enum DiariaEnum {
 	}
 	
 	public static DiariaEnum findByNome(final String nome) {
-		return DiariaEnum.map.get(nome);
+		return DiariaEnum.map.get(nome.toUpperCase());
 	}
 
 	private static final Map<String, DiariaEnum> map;
 	static {
 		map = new HashMap<>();
 		for (final DiariaEnum diaria : DiariaEnum.values()) {
-			DiariaEnum.map.put(diaria.nome, diaria);
+			DiariaEnum.map.put(diaria.nome.toUpperCase(), diaria);
 		}
+	}
+	
+	public static BigDecimal calcular(LocalDateTime dataInicio, LocalDateTime dataFim, boolean estacionamento) {
+		BigDecimal valorTotal = BigDecimal.ZERO;
+		long diasEntre = DateUtils.getDiasEntreDuasDatas(dataInicio, dataFim);
+        for (long i = 0; i <= diasEntre; i++) {
+            LocalDate dataAtual = dataInicio.toLocalDate().plusDays(i);
+            String diaSemana = DateUtils.getConverteDataEmDiaSemana(dataAtual.atStartOfDay());
+            DiariaEnum diaAtual = DiariaEnum.findByNome(diaSemana);
+            valorTotal = valorTotal.add(BigDecimal.valueOf(diaAtual.getValorDiaria()));
+            if(estacionamento) {
+            	valorTotal = valorTotal.add(BigDecimal.valueOf(diaAtual.getValorEstacionamento()));
+            }
+        }
+		return valorTotal;
 	}
 }

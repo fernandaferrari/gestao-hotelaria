@@ -1,6 +1,7 @@
 package com.example.gestaoHotelaria.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import com.example.gestaoHotelaria.entity.Reserva;
 
@@ -8,6 +9,7 @@ public class ReservaDTO {
 
 	private Long id;
 	private Long hospede;
+	private String cpf;
 	private String nomeHospede;
 	private String dataInicio;
 	private String dataFim;
@@ -15,14 +17,15 @@ public class ReservaDTO {
 	private BigDecimal valor;
 	private boolean checkin;
 	private boolean checkout;
-	
+	private LocalDateTime dataHoraCheckin;
+	private LocalDateTime dataHoraCheckout;
 
 	public ReservaDTO() {
 		super();
 	}
 	
 	public ReservaDTO(Long id, Long hospede, String nomeHospede, String dataInicio, String dataFim,
-			String estacionamento, BigDecimal valor, boolean checkin, boolean checkout) {
+			String estacionamento, BigDecimal valor, boolean checkin, boolean checkout, LocalDateTime dataHoraCheckin, LocalDateTime dataHoraCheckout) {
 		super();
 		this.id = id;
 		this.hospede = hospede;
@@ -33,6 +36,8 @@ public class ReservaDTO {
 		this.valor = valor;
 		this.checkin = checkin;
 		this.checkout = checkout;
+		this.dataHoraCheckin = dataHoraCheckin;
+		this.dataHoraCheckout = dataHoraCheckout;
 	}
 
 	public Long getId() {
@@ -73,7 +78,7 @@ public class ReservaDTO {
 	}
 	
 	public static ReservaDTO build(Reserva r) {
-		return new ReservaDTO(r.getId(), r.getHospede().getId(), r.getHospede().getNome(), r.getDataInicioString(), r.getDataFimString(), r.getEstacionamento(), r.getValor(), r.isTemCheckin(), r.isTemCheckout());
+		return new ReservaDTO(r.getId(), r.getHospede().getId(), r.getHospede().getNome(), r.getDataInicioString(), r.getDataFimString(), r.getEstacionamento(), r.getValor(), r.isTemCheckin(), r.isTemCheckout(), r.getCheckin() != null ? r.getCheckin().getData() : null, r.getCheckout() != null ? r.getCheckout().getData() : null);
 	}
 
 	public String getNomeHospede() {
@@ -98,6 +103,30 @@ public class ReservaDTO {
 
 	public void setCheckout(boolean checkout) {
 		this.checkout = checkout;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public LocalDateTime getDataHoraCheckin() {
+		return dataHoraCheckin;
+	}
+
+	public void setDataHoraCheckin(LocalDateTime dataHoraCheckin) {
+		this.dataHoraCheckin = dataHoraCheckin;
+	}
+
+	public LocalDateTime getDataHoraCheckout() {
+		return dataHoraCheckout;
+	}
+
+	public void setDataHoraCheckout(LocalDateTime dataHoraCheckout) {
+		this.dataHoraCheckout = dataHoraCheckout;
 	}
 	
 }

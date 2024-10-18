@@ -1,10 +1,11 @@
 package com.example.gestaoHotelaria.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class CheckDTO {
 	private Long idReserva;
-	private String data;
+	private LocalDateTime data;
 	private BigDecimal valor;
 	
 	public CheckDTO() {
@@ -19,11 +20,11 @@ public class CheckDTO {
 		this.idReserva = idReserva;
 	}
 
-	public String getData() {
+	public LocalDateTime getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDateTime data) {
 		this.data = data;
 	}
 

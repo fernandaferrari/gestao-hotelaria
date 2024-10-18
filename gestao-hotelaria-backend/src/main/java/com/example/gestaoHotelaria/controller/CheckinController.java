@@ -7,6 +7,7 @@ import com.example.gestaoHotelaria.dto.CheckDTO;
 import com.example.gestaoHotelaria.service.ReservaCheckinService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,12 +19,12 @@ public class CheckinController {
 	@Autowired ReservaCheckinService checkinService;
 	
 	@PostMapping("/save")
-	public String saveCheckin(@RequestBody CheckDTO checkDTO) {
+	public ResponseEntity<String> saveCheckin(@RequestBody CheckDTO checkDTO) {
 		try {
 			this.checkinService.save(checkDTO);
-			return "Check-in efetuado com sucesso!";
+			return ResponseEntity.ok("Check-in efetuado com sucesso!");
 		}catch (Exception e) {
-			return e.getMessage();
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
 }

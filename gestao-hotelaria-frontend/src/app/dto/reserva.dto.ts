@@ -1,9 +1,13 @@
 export interface ReservaDTO{
-  id: number;
-  nomeHospede: string;
+  id?: number;
+  cpf?: string;
+  nomeHospede?: string;
   dataInicio: string;
   dataFim: string;
-  valor: number;
-  checkin: boolean;
-  checkout: boolean;
+  valor?: number;
+  checkin?: boolean;
+  checkout?: boolean;
+  estacionamento: string;
+  dataHoraCheckout?: Date;
+  dataHoraCheckin?: Date;
 }

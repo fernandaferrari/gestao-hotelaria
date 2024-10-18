@@ -24,27 +24,13 @@ public class ReservaController {
 	@Autowired ReservaService reservaService;
 
 	@PostMapping("/save")
-	public String saveReserva(@RequestBody ReservaDTO reservaDTO) {
+	public ResponseEntity<String> saveReserva(@RequestBody ReservaDTO reservaDTO) {
 		try {
 			this.reservaService.save(reservaDTO);
-			return "Reserva cadastrada com sucesso!";
+			return ResponseEntity.ok("Reserva cadastrada com sucesso!");
 		}catch (Exception e) {
-			return e.getMessage();
+			return ResponseEntity.badRequest().body(e.getMessage());
 		}
-	}
-	
-	@PostMapping("/checkout/save")
-	public String saveCheckoutHospede(@RequestBody CheckDTO checkDTO) {
-		//TODO: process POST request
-		
-		return "Check-in efetuado com sucesso!";
-	}
-		
-	@PostMapping("/checkin/save")
-	public String saveCheckinHospede(@RequestBody String entity) {
-		//TODO: process POST request
-		
-		return entity;
 	}
 	
 	@GetMapping("/sem-checkout")

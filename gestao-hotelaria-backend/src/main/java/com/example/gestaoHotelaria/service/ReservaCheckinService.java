@@ -9,7 +9,6 @@ import com.example.gestaoHotelaria.dto.CheckDTO;
 import com.example.gestaoHotelaria.entity.Reserva;
 import com.example.gestaoHotelaria.entity.ReservaCheckin;
 import com.example.gestaoHotelaria.repository.ReservaCheckinRepository;
-import com.example.gestaoHotelaria.utils.DateUtils;
 
 @Service
 public class ReservaCheckinService {
@@ -18,16 +17,19 @@ public class ReservaCheckinService {
 	@Autowired ReservaService reservaService;
 
 	public void save(CheckDTO checkDTO) throws Exception {
-		Optional<Reserva> reserva = this.reservaService.findById(checkDTO.getIdReserva());
+		Optional<Reserva> reservaOpt = this.reservaService.findById(checkDTO.getIdReserva());
 		
-		if(!reserva.isPresent()) {
+		if(!reservaOpt.isPresent()) {
 			throw new Exception("Reserva não encontrada!");
 		}
 		
 		ReservaCheckin checkin = new ReservaCheckin();
-		checkin.setReserva(reserva.get());
-		checkin.setData(DateUtils.getConverteStringToDate(checkDTO.getData()));
+		Reserva reserva = reservaOpt.get();
+		checkin.setReserva(reserva);
+		checkin.setData(checkDTO.getData());
 		this.repository.save(checkin);
+		reserva.setCheckin(checkin);
+		this.reservaService.saveReserva(reserva);
 	}
 	
 }

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import com.example.gestaoHotelaria.dto.HospedeDTO;
 import com.example.gestaoHotelaria.utils.DateUtils;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,6 +19,7 @@ public class Hospede {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nome;
+	@Column(unique = true) 
 	private String cpf;
 	private String telefone;
 	private LocalDateTime dataNascimento;
@@ -69,6 +71,9 @@ public class Hospede {
 	public Hospede build(HospedeDTO dto) {
 		return new Hospede(null, dto.getNome(), dto.getCpf(), dto.getTelefone(), DateUtils.getConverteStringToDate(dto.getDataNascimento()));
 	}
-	
+
+	public String getDataNascimentoToString() {
+		return DateUtils.getConverteDateToString(this.getDataNascimento());
+	}
 	
 }

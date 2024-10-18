@@ -3,6 +3,7 @@ package com.example.gestaoHotelaria.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import com.example.gestaoHotelaria.utils.DateUtils;
+import com.example.gestaoHotelaria.utils.DiariaEnum;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -130,6 +131,19 @@ public class Reserva {
 
 	public String getDataInicioString() {
 		return DateUtils.getConverteDateToString(this.getDataInicio());
+	}
+	
+	public boolean isEstacionamento() {
+		return "Sim".equals(this.getEstacionamento());
+	}
+
+	public String getValorDiariaString() {
+		//o ideal seria ter um campo de valor para cada um, desta maneira vou fazer uma gambi só pra exibição
+		return this.isEstacionamento() ? this.getValor().divide(BigDecimal.TWO).toString() : this.getValor().toString();
+	}
+
+	public String getValorEstacionamentoString() {
+		return this.isEstacionamento() ? this.getValor().divide(BigDecimal.TWO).toString() : "";
 	}
 
 }

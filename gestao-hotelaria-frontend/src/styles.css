@@ -83,3 +83,26 @@
 .form-group{
   margin-bottom: 20px;
 }
+
+.lista {
+  padding: 50px;
+ }
+ table {
+   margin: 20px auto;
+   border-collapse: collapse;
+ }
+
+ th, td {
+   padding: 10px; /* Espaçamento interno nas células da tabela */
+   text-align: center; /* Centraliza o conteúdo nas células */
+   border: 1px solid #000; /* Borda em volta das células */
+   width: 280px;
+ }
+
+ thead {
+   background-color: #f2a25c; /* Cor do cabeçalho da tabela */
+ }
+
+ tbody {
+   background-color: #fff; /* Cor do corpo da tabela */
+ }

@@ -4,33 +4,20 @@
       <tr>
         <th>ID</th>
         <th>Nome</th>
-        <th>Data Início</th>
-        <th>Data Fim</th>
-        <th>Check-in</th>
-        <th>Check-out</th>
+        <th>CPF</th>
+        <th>Data de nascimento</th>
+        <th>Telefone</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let reserva of reservas">
-        <td>{{ reserva.id }}</td>
-        <td>{{ reserva.nomeHospede }}</td>
-        <td>{{ reserva.dataInicio }}</td>
-        <td>{{ reserva.dataFim }}</td>
-        <td>
-          <input
-            type="checkbox"
-            [checked]="reserva.checkin"
-            (change)="onCheckinChange(reserva, $event)"
-          />
-        </td>
-        <td>
-          <input
-            type="checkbox"
-            [checked]="reserva.checkout"
-            (change)="onCheckoutChange(reserva, $event)"
-          />
-        </td>
+      <tr *ngFor="let hospede of hospedes">
+        <td>{{ hospede.id }}</td>
+        <td>{{ hospede.nome }}</td>
+        <td>{{ hospede.cpf }}</td>
+        <td>{{ hospede.dataNascimento }}</td>
+        <td>{{ hospede.telefone }}</td>
       </tr>
     </tbody>
   </table>
 </div>
+
